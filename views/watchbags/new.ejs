@@ -1,0 +1,36 @@
+<% layout( 'layouts/boilerplate' ) %>
+
+<div class="row">
+    <h1 class="text-center mb-3">Add Your WatchBag</h1>
+    <div class="col-md-6 offset-md-3">
+    <form method="POST" action="/mywatchbags" class="needs-validation" novalidate enctype="multipart/form-data">
+
+
+        <div class="mb-3">
+            <label class="form-label" for="name">Name of WatchBag</label>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Hollywood Banger" required>
+            <div class="valid-feedback">Looks Good!<i class="fa-solid fa-thumbs-up"></i></div>
+            <div class="invalid-feedback">Please enter a name!<i class="fa-solid fa-thumbs-down"></i></div>
+        </div>
+
+
+        <!-- Image file input code -->
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Image File</label>
+            <input class="form-control" type="file" id="formFile" name="image">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="floatingTextarea2">Description</label>
+            <textarea class="form-control" name="description" placeholder="WatchBag Description" id="floatingTextarea2" style="height: 100px" required></textarea>
+            <div class="valid-feedback">Looks Good! <i class="fa-solid fa-thumbs-up"></i></div>
+            <div class="invalid-feedback">Please enter a description of your Watchbag! <i class="fa-solid fa-thumbs-down"></i></div>
+        </div>
+
+
+        <button class="btn btn-success">Create New Bag</button>
+    </form>
+    <a class="btn btn-danger mb-3" href="/campgrounds">Go Back</a>
+    </div>
+</div> 

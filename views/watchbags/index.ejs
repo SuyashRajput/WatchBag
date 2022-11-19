@@ -1,0 +1,19 @@
+<%- layout( 'layouts/boilerplate' ) %>
+
+<div class="row">
+    <% for( let wb of watchbags ){ %>
+        <div class="col">
+            <a class="ms-3 col-5" href="/mywatchbags/<%=wb._id%>"> 
+            <div class="card mb-3 px-0" style="width:350px; height:420px;">
+                <img src="Chainsawman.jpg" class="img-fluid rounded-start" style="width:350px; height:350px;" alt="...">
+                <div>
+                    <div class="card-body">
+                    <h3 class="card-title mb-2"><%= wb.name %></h3>
+                    <p class="text muted"><%=wb.createdOn%></p>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+    <% } %> 
+</div>
