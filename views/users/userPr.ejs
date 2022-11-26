@@ -1,0 +1,76 @@
+<% layout('layouts/boilerplate') %>
+
+<div id="alignment">
+  <div class="col-md-11 offset-1 mt-3">
+    <div class="row">
+      <div class="col-md-3 mt-4 mb-5 px-0" style="width: 350px; height: 420px">
+        <a
+          href="<%= currentUser.image.url %>"
+          class="rounded-circle ms-4 mt-4"
+          style="width: 300px; height: 300px; object-fit: cover"
+        >
+          <img
+            src="<%= currentUser.image.url %> "
+            class="rounded-circle border border-4"
+            style="width: 300px; height: 300px; object-fit: cover"
+            alt="..."
+          />
+        </a>
+      </div>
+
+      <div class="col-md-7 offset-1" style="height: 420px" id="home2">
+        <div class="border-end border-3 px-5">
+          <h2 class="card-title mb-2" id="heading">
+            <%= currentUser.username %>
+          </h2>
+          <p class="text muted" id="heading2"><%=currentUser.email%></p>
+        </div>
+        <div class="px-5 col-md-5">
+          <% var sum1 = 0 %> <% var sum2 = 0 %> <% var sum3 = 0 %> <% var sum4 =
+          0 %> <% for( wb of watchbags ) { sum1 = sum1 + wb.showsCurrent.length
+          }%> <% for( wb of watchbags ) { sum2 = sum2 + wb.showsOnHold.length
+          }%> <% for( wb of watchbags ) { sum3 = sum3 + wb.showsDropped.length
+          }%> <% for( wb of watchbags ) { sum4 = sum4 + wb.showsWatched.length
+          }%>
+          <br />
+          <h6 id="heading3">
+            <i class="fa-solid fa-play"></i> Currently Watching: <%= sum1 %>
+          </h6>
+          <h6 id="heading3">
+            <i class="fa-solid fa-pause"></i> On Hold: <%= sum2 %>
+          </h6>
+          <h6 id="heading3">
+            <i class="fa-solid fa-trash"></i> Dropped: <%= sum3 %>
+          </h6>
+          <h6 id="heading3">
+            <i class="fa-solid fa-check"></i> Completed: <%= sum4 %>
+          </h6>
+        </div>
+      </div>
+
+      <div class="col-md-11">
+        <% for (let wb of watchbags){%>
+        <a href="/mywatchbags/<%=wb._id%>">
+          <div class="card mb-4" style="width: 300px; height: 86px">
+            <div class="row g-0">
+              <div class="col-md-3">
+                <img
+                  src="<%=wb.image.url%> "
+                  class="rounded-start"
+                  style="width: 84px; height: 84px; object-fit: cover"
+                  alt="..."
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <p class="card-title"><%=wb.name %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

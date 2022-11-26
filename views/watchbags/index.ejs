@@ -1,19 +1,40 @@
 <%- layout( 'layouts/boilerplate' ) %>
 
-<div class="row">
-    <% for( let wb of watchbags ){ %>
-        <div class="col">
-            <a class="ms-3 col-5" href="/mywatchbags/<%=wb._id%>"> 
-            <div class="card mb-3 px-0" style="width:350px; height:420px;">
-                <img src="Chainsawman.jpg" class="img-fluid rounded-start" style="width:350px; height:350px;" alt="...">
-                <div>
-                    <div class="card-body">
-                    <h3 class="card-title mb-2"><%= wb.name %></h3>
-                    <p class="text muted"><%=wb.createdOn%></p>
-                    </div>
-                </div>
-            </div>
-            </a>
+<div class="col-md-8 offset-2">
+  <div class="row">
+    <% if( watchbags.length == 0 ) {%>
+    <div id="home1">
+      <div>
+        <div class="d-flex justify-content-center">
+          <img src="/dead.png" width="100px" alt="" />
         </div>
-    <% } %> 
+        <br />
+        <div>
+          <h1>No Watchbags here! Go create one...</h1>
+        </div>
+      </div>
+    </div>
+    <% } %> <% for( let wb of watchbags ){ %>
+    <div class="col mt-3">
+      <a
+        class="card mb-3 px-0"
+        style="width: 350px; height: 420px"
+        href="/mywatchbags/<%=wb._id%>"
+      >
+        <img
+          src="<%=wb.image.url%> "
+          class="img-fluid rounded-start"
+          style="width: 350px; height: 300px; object-fit: cover"
+          alt="..."
+        />
+        <div>
+          <div class="card-body">
+            <h3 class="card-title mb-2"><%= wb.name %></h3>
+            <p class="text muted"><%=wb.createdOn%></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
 </div>

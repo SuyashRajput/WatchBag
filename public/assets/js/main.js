@@ -4,6 +4,21 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+document.addEventListener('DOMContentLoaded', () => {
+  "use strict";
+
+  /**
+   * Preloader
+   */
+  const preloader = document.querySelector('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove();
+    });
+  }
+});
+
 (function() {
   "use strict";
 
@@ -212,4 +227,10 @@
 })()
 
 let items = document.querySelectorAll('.carousel .carousel-item')
+
+const preloaderWrapper = document.querySelector('.preloader-wrapper');
+
+window.addEventListener('load', function() {
+    preloaderWrapper.classList.add('fade-out-animation');
+});
 

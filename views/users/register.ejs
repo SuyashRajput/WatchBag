@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate') %> 
+    <div id="home1">
+        <div>
+            <h1 class="my-4" id="heading">Register Account:</h1>
+            <form method="POST" action="/register" class="needs-validation col-md-10" novalidate enctype="multipart/form-data">
+                
+                <div class="mb-3">
+                    <label class="form-label mb-3" for="username">Username</label>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="Sam_42" required>
+                    <div class="valid-feedback">Looks Good! <i class="fa-solid fa-thumbs-up"></i></div>
+                    <div class="invalid-feedback">Please enter a Username! <i class="fa-solid fa-thumbs-down"></i></div>
+                </div>
+                
+                <div class="mb-3">
+            <label class="form-label mb-3" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" placeholder="Sam_42@gmail.com" required>
+            <div class="valid-feedback">Looks Good! <i class="fa-solid fa-thumbs-up"></i></div>
+            <div class="invalid-feedback">Please enter a Username! <i class="fa-solid fa-thumbs-down"></i></div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="formFile" class="form-label mb-3">Upload Profile Image</label>
+            <input class="form-control" type="file" id="formFile" name="image">
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label mb-3" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" placeholder="********" required>
+            <div class="valid-feedback">Looks Good! <i class="fa-solid fa-thumbs-up"></i></div>
+            <div class="invalid-feedback">Please enter a password! <i class="fa-solid fa-thumbs-down"></i></div>
+        </div>
+        
+        <button class="btn btn-success mt-2">Register</button>
+
+        </div>
+
+</div>

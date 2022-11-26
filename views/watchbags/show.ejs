@@ -1,172 +1,354 @@
-<%- layout('layouts/boilerplate')  %>
+<%- layout('layouts/boilerplate') %>
 
-<h2><%= watchbag.name %> </h2>
-<br>
-<h4><%= watchbag.description %> </h4>
-<br><br><br>
+<div id="alignment">
+  <div class="col-md-10">
+    <br />
+    <h2 class="card-title" id="heading"><%= watchbag.name %></h2>
+    <br />
+    <p class="card-text" id="heading2"><%= watchbag.description %></p>
+    <br />
+    <script>
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
 
-<script>
-function allowDrop(ev) {
-  ev.preventDefault();
-}
+      function drag(ev) {
+        console.log(ev);
+        console.log(ev.target);
+        ev.dataTransfer.setData(
+          "text",
+          ev.target.childNodes[1].childNodes[1].innerText
+        );
+      }
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.childNodes[1].childNodes[1].innerText);
-}
+      async function drop_toW(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        let id = "<%- id%>";
+        window.location.replace(`/mywatchbags/${id}/dnd/toW/${data}`);
+      }
 
-async function drop_C2W(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  console.log(data);
-  let id = '<%- id%>'
-  window.location.replace(`http://localhost:3000/mywatchbags/${id}/dnd/C2W/${data}`);
-  // await axios.post(`http://localhost:3000/mywatchbags/${id}/${data}`)
-}
+      async function drop_toC(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        let id = "<%- id%>";
+        window.location.replace(`/mywatchbags/${id}/dnd/toC/${data}`);
+      }
 
-async function drop_W2C(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  console.log(data);
-  let id = '<%- id%>'
-  window.location.replace(`http://localhost:3000/mywatchbags/${id}/dnd/W2C/${data}`);
-}
-</script>
+      async function drop_toH(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        let id = "<%- id%>";
+        window.location.replace(`/mywatchbags/${id}/dnd/toH/${data}`);
+      }
 
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item" ondrop="drop_W2C(event)" ondragover="allowDrop(event)">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button collapsed btn btn-danger active border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        Currently Watching
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <% for (let s of watchbag.showsCurrent){%>
-          <div class="card mb-3" style="width:800px; height:86px;" draggable="true" ondragstart="drag(event)">
-            <div class="row g-0">
-              <p hidden><%= s._id %> </p>
-              <div class="col-md-1">
-                <img src="<%=s.image%> " class="img-fluid rounded-start" style="width:58px; height:86px;" alt="...">
-              </div>
-              <div class="col-md-10 ">
-                <div class="card-body">
-                  <h5 class="card-title"><%=s.name %> </h5>
-                  <p class="text-muted">Started Watching : <%= s.startedOn%></p>
+      async function drop_toD(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        let id = "<%- id%>";
+        window.location.replace(`/mywatchbags/${id}/dnd/toD/${data}`);
+      }
+    </script>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="accordion" id="accordionExample">
+          <div
+            class="accordion-item"
+            ondrop="drop_toC(event)"
+            ondragover="allowDrop(event)"
+          >
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="false"
+                aria-controls="collapseOne"
+              >
+                Currently Watching
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <% for (let s of watchbag.showsCurrent){%>
+                <div
+                  class="card mb-3"
+                  style="width: 800px; height: 86px"
+                  draggable="true"
+                  ondragstart="drag(event)"
+                >
+                  <div class="row g-0">
+                    <p hidden><%= s._id %></p>
+                    <div class="col-md-1">
+                      <img
+                        src="<%=s.image%> "
+                        class="img-fluid rounded-start"
+                        style="width: 58px; height: 84px"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title"><%=s.name %></h5>
+                        <p class="text-muted">
+                          Started Watching : <%= s.startedOn%>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <% } %>
               </div>
             </div>
           </div>
-        <% } %>
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed btn btn-danger active border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Plan to Watch
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        gwwwvw
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed btn btn-danger active border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        On Hold
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        wgvsw
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item" ondrop="drop_C2W(event)" ondragover="allowDrop(event)">
-    <h2 class="accordion-header" id="headingFour">
-      <button class="accordion-button collapsed btn btn-danger active border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-        Completed
-      </button>
-    </h2>
-    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <% for (let s of watchbag.showsWatched){%>
-          <div class="card mb-3" style="width:800px; height:86px;" draggable="true" ondragstart="drag(event)">
-            <div class="row g-0">
-              <p hidden><%= s._id %> </p>
-              <div class="col-md-1">
-                <img src="<%=s.image%> " class="img-fluid rounded-start" style="width:58px; height:86px;" alt="...">
-              </div>
-              <div class="col-md-10 ">
-                <div class="card-body">
-                  <h5 class="card-title"><%=s.name %> </h5>
-                  <p class="text-muted">Started Watching : <%= s.startedOn%></p>
+          <div
+            class="accordion-item"
+            ondrop="drop_toD(event)"
+            ondragover="allowDrop(event)"
+          >
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                Dropped
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <% for (let s of watchbag.showsDropped){%>
+                <div
+                  class="card mb-3"
+                  style="width: 800px; height: 86px"
+                  draggable="true"
+                  ondragstart="drag(event)"
+                >
+                  <div class="row g-0">
+                    <p hidden><%= s._id %></p>
+                    <div class="col-md-1">
+                      <img
+                        src="<%=s.image%> "
+                        class="img-fluid rounded-start"
+                        style="width: 58px; height: 84px"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title"><%=s.name %></h5>
+                        <p class="text-muted">
+                          Started Watching : <%= s.startedOn%>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <% } %>
               </div>
             </div>
           </div>
-      <% } %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-  Add New Show
-</button>
-
-<form action="/mywatchbags/<%=watchbag._id%>?_method=delete" method="post">
-  <button class="btn btn-outline-danger">Delete WatchBag</button>
-</form>
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="heading offcanvas-header py-2 ms-3 mb-2 mt-2">
-      <h4 class="offcanvas-title" id="offcanvasExampleLabel">Search Shows</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <form class="form-inline col-md-9 ms-3" action="/mywatchbags/<%=watchbag._id%>" method="post">
-      <div class="input-group mb-3">
-          <label class="form-label" for="showname"></label>
-          <input type="text" class="form-control" placeholder="Search" id="showname" name="showname">
-          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-    </form>
-    <div class="offcanvas-body mx-4">
-
-      <div class="col-10">
-        <div data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-
-          
-          <!-- <div class="card">
-            <div class="card-body">
-              <h4 class="card-title"> </h4>
-              <h6 class="text-muted"> </h6>
+          <div
+            class="accordion-item"
+            ondrop="drop_toH(event)"
+            ondragover="allowDrop(event)"
+          >
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                On Hold
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <% for (let s of watchbag.showsOnHold){%>
+                <div
+                  class="card mb-3"
+                  style="width: 800px; height: 86px"
+                  draggable="true"
+                  ondragstart="drag(event)"
+                >
+                  <div class="row g-0">
+                    <p hidden><%= s._id %></p>
+                    <div class="col-md-1">
+                      <img
+                        src="<%=s.image%> "
+                        class="img-fluid rounded-start"
+                        style="width: 58px; height: 84px"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title"><%=s.name %></h5>
+                        <p class="text-muted">
+                          Started Watching : <%= s.startedOn%>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+              </div>
             </div>
-          </div> -->
-
-
-
-
-
-          <h4 id="list-item-1">Item 1</h4>
-          <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-          <h4 id="list-item-2">Item 2</h4>
-          <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-          <h4 id="list-item-3">Item 3</h4>
-          <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-          <h4 id="list-item-4">Item 4</h4>
-          <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+          </div>
+          <div
+            class="accordion-item"
+            ondrop="drop_toW(event)"
+            ondragover="allowDrop(event)"
+          >
+            <h2 class="accordion-header" id="headingFour">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                Completed
+              </button>
+            </h2>
+            <div
+              id="collapseFour"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFour"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <% for (let s of watchbag.showsWatched){%>
+                <div
+                  class="card mb-3"
+                  style="width: 800px; height: 86px"
+                  draggable="true"
+                  ondragstart="drag(event)"
+                >
+                  <div class="row g-0">
+                    <p hidden><%= s._id %></p>
+                    <div class="col-md-1">
+                      <img
+                        src="<%=s.image%> "
+                        class="img-fluid rounded-start"
+                        style="width: 58px; height: 84px"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title"><%=s.name %></h5>
+                        <p class="text-muted">
+                          Started Watching : <%= s.startedOn%>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+              </div>
+            </div>
+          </div>
         </div>
+        <br />
+        <form
+          action="/mywatchbags/<%=watchbag._id%>?_method=delete"
+          method="post"
+        >
+          <button class="btn btn-danger">Delete WatchBag</button>
+        </form>
+        <br />
+        <form
+          action="/mywatchbags/<%=watchbag._id%>/status?_method=put"
+          method="post"
+        >
+          <% if( watchbag.status == true ){%>
+          <button class="btn btn-danger">Make Private</button>
+          <% }else{ %>
+          <button class="btn btn-success">Make Public</button>
+          <% } %>
+        </form>
       </div>
 
+      <div class="col-md-4 ms-5">
+        <form
+          class="form-inline col-md-9 ms-3"
+          action="/mywatchbags/<%=watchbag._id%>"
+          method="post"
+        >
+          <div class="input-group mb-3">
+            <label class="form-label" for="showname"></label>
+            <input
+              type="text"
+              class="form-control rounded-pill"
+              placeholder="Search"
+              id="showname"
+              name="showname"
+            />
+            <button type="submit" class="btn btn-danger ms-2 rounded-pill">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
 
+        <% if( data ){%> <% for( ser of data.Search ){ %>
+        <div class="card mb-3" style="width: 400px; height: 100px">
+          <div class="row g-0">
+            <div class="col-md-2">
+              <img
+                src="<%= ser.Poster %>"
+                class="img-fluid rounded-start"
+                style="width: 58px; height: 98px"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-9">
+              <div class="card-body">
+                <p class="card-title"><%= ser.Title %></p>
+                <p class="text-muted"><%= ser.Year %></p>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <form
+                method="post"
+                action="/mywatchbags/<%=watchbag._id%>/<%= ser.imdbID %>"
+              >
+                <button
+                  class="btn btn-success"
+                  style="width: 50px; height: 50px"
+                >
+                  +
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
 
+        <% } %> <% } %>
+      </div>
     </div>
+  </div>
 </div>
-
-    

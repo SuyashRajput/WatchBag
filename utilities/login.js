@@ -1,6 +1,5 @@
 const isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
-        req.session.returnTo = req.originalUrl
         req.flash('warning', 'Login to Continue!');
         return res.redirect('/login');
     }

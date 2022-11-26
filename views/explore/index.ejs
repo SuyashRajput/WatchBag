@@ -1,0 +1,28 @@
+<%- layout( 'layouts/boilerplate' ) %>
+
+<div class="col-md-8 offset-2">
+  <div class="row">
+    <% for( let wb of watchbags ){ %>
+    <div class="col my-4 mx-3">
+      <a
+        class="card mb-3 px-0"
+        style="width: 250px; height: 400px"
+        href="/explore/<%=wb._id%>"
+      >
+        <img
+          src="<%=wb.image.url%> "
+          class="img-fluid rounded-start"
+          style="width: 250px; height: 250px; object-fit: cover"
+          alt="..."
+        />
+        <div>
+          <div class="card-body">
+            <h3 class="card-title mb-2"><%= wb.name %></h3>
+            <p class="text muted">Created By <%=wb.author.username%></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
+</div>

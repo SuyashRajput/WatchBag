@@ -1,21 +1,26 @@
-<% layout('layouts/boilerplate') %> 
-<div class="row">
-    <% for( ser of data.Search ){ %> 
-        <a class="ms-5 col-5" href="/search/<%= ser.imdbID %>"> 
-        <div class="card mb-3 px-0" style="width:525px; height:259px;">
-            <div class="row g-0">
-            <div class="col-md-4">
-                <img src="<%= ser.Poster %>" class="img-fluid rounded-start" style="width:175px; height:259px;" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                <h3 class="card-title mb-2"><%= ser.Title %> </h3>
-                <h5><%= ser.Year %> </h5>
-                <p class="card-text text-muted mt-1"><%= ser.Type %> </p>
-                </div>
-            </div>
-            </div>
+<% layout('layouts/boilerplate') %>
+<div class="row px-5 m-5">
+  <% for( ser of data.Search ){ %>
+  <a class="col-md-4" href="/search/<%= ser.imdbID %>">
+    <div class="card mb-5" style="width: 525px; height: 259px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="<%= ser.Poster %>"
+            class="img-fluid rounded-start"
+            style="width: 175px; height: 257px"
+            alt="..."
+          />
         </div>
-        </a>
-    <% } %> 
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title mb-2"><%= ser.Title %></h3>
+            <h5><%= ser.Year %></h5>
+            <p class="card-text text-muted mt-1"><%= ser.Type %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  <% } %>
 </div>

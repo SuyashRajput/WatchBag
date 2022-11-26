@@ -1,0 +1,73 @@
+<%- layout('layouts/boilerplate') %>
+
+<div id="alignment">
+  <div>
+    <h1 id="heading"><%= watchbag.name %></h1>
+    <h3 id="heading2"><%= watchbag.author.username %></h3>
+    <br />
+    <% for (let s of watchbag.showsCurrent){%>
+    <a href="/search/<%= s.imdbID %>">
+      <div class="card mb-3" style="width: 800px; height: 86px">
+        <div class="row g-0">
+          <div class="col-md-1">
+            <img
+              src="<%=s.image%> "
+              class="img-fluid rounded-start"
+              style="width: 58px; height: 84px"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title"><%=s.name %></h5>
+              <p class="text-muted">Started Watching : <%= s.startedOn%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    <% } %> <% for (let s of watchbag.showsWatched){%>
+    <a href="/search/<%= s.imdbID %>">
+      <div class="card mb-3" style="width: 800px; height: 86px">
+        <div class="row g-0">
+          <div class="col-md-1">
+            <img
+              src="<%=s.image%> "
+              class="img-fluid rounded-start"
+              style="width: 58px; height: 84px"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title"><%=s.name %></h5>
+              <p class="text-muted">Started Watching : <%= s.startedOn%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    <% } %> <% for (let s of watchbag.showsOnHold){%>
+    <a href="/search/<%= s.imdbID %>">
+      <div class="card mb-3" style="width: 800px; height: 86px">
+        <div class="row g-0">
+          <div class="col-md-1">
+            <img
+              src="<%=s.image%> "
+              class="img-fluid rounded-start"
+              style="width: 58px; height: 84px"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title"><%=s.name %></h5>
+              <p class="text-muted">Started Watching : <%= s.startedOn%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    <% } %>
+  </div>
+</div>
