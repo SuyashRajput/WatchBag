@@ -31,7 +31,7 @@ const mongoose = require("mongoose");
 const { watch, findById } = require("./models/watchbag");
 
 mongoose.connect(
-  "mongodb+srv://suyash:demon@watchbag.cxrz0jz.mongodb.net/WatchBag?retryWrites=true&w=majority",
+  `mongodb+srv://${process.env.MONGO_key}.mongodb.net/WatchBag?retryWrites=true&w=majority`,
   () => {
     console.log("Database Connected");
   }
