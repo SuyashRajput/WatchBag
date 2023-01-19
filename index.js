@@ -28,14 +28,15 @@ const mywatchbagRoutes = require("./routes/mywatchbagRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const mongoose = require("mongoose");
-const { watch, findById } = require("./models/watchbag");
+// const { watch, findById } = require("./models/watchbag");
 
-mongoose.connect(
-  `mongodb+srv://${process.env.MONGO_key}.mongodb.net/WatchBag?retryWrites=true&w=majority`,
-  () => {
-    console.log("Database Connected");
-  }
-);
+const MongoStore = require("connect-mongo");
+
+const dbUrl = `mongodb+srv://${process.env.MONGO_key}.mongodb.net/WatchBag?retryWrites=true&w=majority`;
+
+mongoose.connect(dbUrl, () => {
+  console.log("Database Connected");
+});
 
 const app = express();
 
@@ -47,10 +48,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
-//-momery unleaked---------
-app.set("trust proxy", 1);
+const store = new MongoStore({
+  mongoUrl: dbUrl,
+  secret: "yedpmaiaaphomashaallah",
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", (e) => {
+  console.log("Session Store Error", e);
+});
 
 const sessionConfig = {
+  store,
   secret: "yedpmaiaaphomashaallah",
   resave: false,
   saveUninitialized: true,
