@@ -925,11 +925,6 @@ body {
   color: #ffffff;
 }
 
-#alignment {
-  display: flex;
-  justify-content: center;
-}
-
 #heading3 {
   font-family: "Lexend";
   font-style: normal;

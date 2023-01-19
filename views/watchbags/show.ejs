@@ -1,12 +1,9 @@
 <%- layout('layouts/boilerplate') %>
 
-<div id="alignment">
+<div class="d-flex justify-content-center align-items center flex-grow-1">
   <div class="col-md-10">
-    <br />
-    <h2 class="card-title" id="heading"><%= watchbag.name %></h2>
-    <br />
-    <p class="card-text" id="heading2"><%= watchbag.description %></p>
-    <br />
+    <h2 class="my-3" id="heading"><%= watchbag.name %></h2>
+    <p class="my-3" id="heading2"><%= watchbag.description %></p>
     <script>
       function allowDrop(ev) {
         ev.preventDefault();
@@ -15,10 +12,7 @@
       function drag(ev) {
         console.log(ev);
         console.log(ev.target);
-        ev.dataTransfer.setData(
-          "text",
-          ev.target.childNodes[1].childNodes[1].innerText
-        );
+        ev.dataTransfer.setData("text", ev.target.childNodes[1].innerText);
       }
 
       async function drop_toW(ev) {
@@ -78,29 +72,30 @@
               <div class="accordion-body">
                 <% for (let s of watchbag.showsCurrent){%>
                 <div
-                  class="card mb-3"
-                  style="width: 800px; height: 86px"
+                  class="card d-flex flex-row mb-3"
+                  style="width: auto; height: 86px"
                   draggable="true"
                   ondragstart="drag(event)"
                 >
-                  <div class="row g-0">
-                    <p hidden><%= s._id %></p>
-                    <div class="col-md-1">
-                      <img
-                        src="<%=s.image%> "
-                        class="img-fluid rounded-start"
-                        style="width: 58px; height: 84px"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title"><%=s.name %></h5>
-                        <p class="text-muted">
-                          Started Watching : <%= s.startedOn%>
-                        </p>
-                      </div>
-                    </div>
+                  <p hidden><%= s._id %></p>
+                  <img
+                    src="<%=s.image%> "
+                    class="img-fluid rounded-start"
+                    style="width: 58px; height: 84px"
+                    alt="..."
+                  />
+                  <div class="card-body d-flex flex-column" style="width: auto">
+                    <h5
+                      class="card-title text break text-truncate"
+                      style="width: auto"
+                    >
+                      <%=s.name %>
+                    </h5>
+                    <span
+                      class="d-flex flex-wrap text-muted text-truncate"
+                      style="width: auto"
+                      >Started Watching : <%= s.startedOn%></span
+                    >
                   </div>
                 </div>
                 <% } %>
@@ -133,29 +128,30 @@
               <div class="accordion-body">
                 <% for (let s of watchbag.showsDropped){%>
                 <div
-                  class="card mb-3"
-                  style="width: 800px; height: 86px"
+                  class="card d-flex flex-row mb-3"
+                  style="width: auto; height: 86px"
                   draggable="true"
                   ondragstart="drag(event)"
                 >
-                  <div class="row g-0">
-                    <p hidden><%= s._id %></p>
-                    <div class="col-md-1">
-                      <img
-                        src="<%=s.image%> "
-                        class="img-fluid rounded-start"
-                        style="width: 58px; height: 84px"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title"><%=s.name %></h5>
-                        <p class="text-muted">
-                          Started Watching : <%= s.startedOn%>
-                        </p>
-                      </div>
-                    </div>
+                  <p hidden><%= s._id %></p>
+                  <img
+                    src="<%=s.image%> "
+                    class="img-fluid rounded-start"
+                    style="width: 58px; height: 84px"
+                    alt="..."
+                  />
+                  <div class="card-body d-flex flex-column" style="width: auto">
+                    <h5
+                      class="card-title text break text-truncate"
+                      style="width: auto"
+                    >
+                      <%=s.name %>
+                    </h5>
+                    <span
+                      class="d-flex flex-wrap text-muted text-truncate"
+                      style="width: auto"
+                      >Started Watching : <%= s.startedOn%></span
+                    >
                   </div>
                 </div>
                 <% } %>
@@ -188,29 +184,30 @@
               <div class="accordion-body">
                 <% for (let s of watchbag.showsOnHold){%>
                 <div
-                  class="card mb-3"
-                  style="width: 800px; height: 86px"
+                  class="card d-flex flex-row mb-3"
+                  style="width: auto; height: 86px"
                   draggable="true"
                   ondragstart="drag(event)"
                 >
-                  <div class="row g-0">
-                    <p hidden><%= s._id %></p>
-                    <div class="col-md-1">
-                      <img
-                        src="<%=s.image%> "
-                        class="img-fluid rounded-start"
-                        style="width: 58px; height: 84px"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title"><%=s.name %></h5>
-                        <p class="text-muted">
-                          Started Watching : <%= s.startedOn%>
-                        </p>
-                      </div>
-                    </div>
+                  <p hidden><%= s._id %></p>
+                  <img
+                    src="<%=s.image%> "
+                    class="img-fluid rounded-start"
+                    style="width: 58px; height: 84px"
+                    alt="..."
+                  />
+                  <div class="card-body d-flex flex-column" style="width: auto">
+                    <h5
+                      class="card-title text break text-truncate"
+                      style="width: auto"
+                    >
+                      <%=s.name %>
+                    </h5>
+                    <span
+                      class="d-flex flex-wrap text-muted text-truncate"
+                      style="width: auto"
+                      >Started Watching : <%= s.startedOn%></span
+                    >
                   </div>
                 </div>
                 <% } %>
@@ -243,29 +240,30 @@
               <div class="accordion-body">
                 <% for (let s of watchbag.showsWatched){%>
                 <div
-                  class="card mb-3"
-                  style="width: 800px; height: 86px"
+                  class="card d-flex flex-row mb-3"
+                  style="width: auto; height: 86px"
                   draggable="true"
                   ondragstart="drag(event)"
                 >
-                  <div class="row g-0">
-                    <p hidden><%= s._id %></p>
-                    <div class="col-md-1">
-                      <img
-                        src="<%=s.image%> "
-                        class="img-fluid rounded-start"
-                        style="width: 58px; height: 84px"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title"><%=s.name %></h5>
-                        <p class="text-muted">
-                          Started Watching : <%= s.startedOn%>
-                        </p>
-                      </div>
-                    </div>
+                  <p hidden><%= s._id %></p>
+                  <img
+                    src="<%=s.image%> "
+                    class="img-fluid rounded-start"
+                    style="width: 58px; height: 84px"
+                    alt="..."
+                  />
+                  <div class="card-body d-flex flex-column" style="width: auto">
+                    <h5
+                      class="card-title text break text-truncate"
+                      style="width: auto"
+                    >
+                      <%=s.name %>
+                    </h5>
+                    <span
+                      class="d-flex flex-wrap text-muted text-truncate"
+                      style="width: auto"
+                      >Started Watching : <%= s.startedOn%></span
+                    >
                   </div>
                 </div>
                 <% } %>
