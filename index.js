@@ -147,6 +147,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error", { message });
 });
 
-app.listen(3000, () => {
+app.listen(3000 || process.env.PORT, () => {
   console.log("Serving on Port 3000");
 });

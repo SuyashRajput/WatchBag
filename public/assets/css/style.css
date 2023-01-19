@@ -863,13 +863,6 @@ footer .credits {
   align-content: center;
 } */
 
-#home1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 #home2 {
   display: flex;
   align-items: center;
@@ -910,6 +903,17 @@ footer .credits {
   font-size: 56px;
 
   color: #ffffff;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #heading2 {

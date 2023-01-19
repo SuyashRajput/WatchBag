@@ -1,55 +1,81 @@
-<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top pt-3 pb-2 px-4">
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-      </button>
-      <a class="navbar-brand text-brand ms-5" href="/"><img class="mb-2" width="225" src="/logo watchbag.png" alt="logo"></a>
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg pt-3 pb-2 px-4">
+  <button
+    class="navbar-toggler collapsed"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarDefault"
+    aria-controls="navbarDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  ></button>
+  <a class="navbar-brand text-brand ms-5" href="/"
+    ><img class="mb-2" width="225" src="/logo watchbag.png" alt="logo"
+  /></a>
 
-      <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
-        <ul class="navbar-nav">
+  <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+    <ul class="navbar-nav">
+      <li class="nav-item mt-1">
+        <a class="nav-link <% if( url == '/' ){ %> active <% } %>" href="/"
+          >Home</a
+        >
+      </li>
 
-          <li class="nav-item mt-1">
-            <a class="nav-link <% if( url == '/' ){ %>
-              active
-              <% } %> " href="/">Home</a>
-          </li>
+      <li class="nav-item mt-1">
+        <a
+          class="nav-link <% if( url == '/explore' ){ %> active <% } %>"
+          href="/explore"
+          >Explore WatchBags</a
+        >
+      </li>
 
-          <li class="nav-item mt-1">
-            <a class="nav-link <% if( url == '/explore' ){ %>
-              active
-              <% } %> " href="/explore">Explore WatchBags</a>
-          </li>
+      <% if( currentUser ){ %>
+      <li class="nav-item mt-1">
+        <a
+          class="nav-link <% if( url == '/mywatchbags' ){ %> active <% } %>"
+          href="/mywatchbags"
+          >My WatchBags
+        </a>
+      </li>
 
-          <% if( currentUser ){ %> 
-          <li class="nav-item mt-1">
-            <a class="nav-link <% if( url == '/mywatchbags' ){ %>
-              active
-              <% } %>" href="/mywatchbags">My WatchBags </a>
-          </li>
-
-          <li class="nav-item me-2 mt-1">
-            <a class="nav-link <% if( url == '/mywatchbags/new' ){ %>
-              active
-              <% } %>" href="/mywatchbags/new">New WatchBag</a>
-          </li>
-        <% } %> 
-          
-
-          <% if( !currentUser ){ %> 
-            <li class="ms-5 mt-2 me-3">
-              <a class="btn btn-outline-danger me-2" href="/register">Register</a>
-              <a class="btn btn-danger me-2" href="/login">Login</a>
-            </li>
-            <% }else{ %> 
-              <li class="nav-item dropdown ms-5 me-3">
-                <a class="nav-link dropdown-toggle ms-5" href="/profile" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%=currentUser.image.url%> " style="width:45px; height:45px; object-fit:cover;" alt="Profile" class="rounded-circle mb-1"></a>
-                <div class="dropdown-menu">
-                    <h5 class="dropdown-item"><%=currentUser.username %></h5>
-                    <a class="dropdown-item" href="/profile">Profile</a>
-                    <a class="dropdown-item" style="color: red" href="/logout">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
-                    <a class="dropdown-item" href="agents-grid.html">Empty</a>
-                    <a class="dropdown-item" href="agent-single.html">Empty</a>
-                </div>
-              </li>
-            <% } %> 
-        </ul>
-      </div>
-  </nav>
+      <li class="nav-item me-2 mt-1">
+        <a
+          class="nav-link <% if( url == '/mywatchbags/new' ){ %> active <% } %>"
+          href="/mywatchbags/new"
+          >New WatchBag</a
+        >
+      </li>
+      <% } %> <% if( !currentUser ){ %>
+      <li class="ms-5 mt-2 me-3">
+        <a class="btn btn-outline-danger me-2" href="/register">Register</a>
+        <a class="btn btn-danger me-2" href="/login">Login</a>
+      </li>
+      <% }else{ %>
+      <li class="nav-item dropdown ms-5 me-3">
+        <a
+          class="nav-link dropdown-toggle ms-5"
+          href="/profile"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          ><img
+            src="<%=currentUser.image.url%> "
+            style="width: 45px; height: 45px; object-fit: cover"
+            alt="Profile"
+            class="rounded-circle mb-1"
+        /></a>
+        <div class="dropdown-menu">
+          <h5 class="dropdown-item"><%=currentUser.username %></h5>
+          <a class="dropdown-item" href="/profile">Profile</a>
+          <a class="dropdown-item" style="color: red" href="/logout"
+            >Logout <i class="fa-solid fa-right-from-bracket"></i
+          ></a>
+          <a class="dropdown-item" href="agents-grid.html">Empty</a>
+          <a class="dropdown-item" href="agent-single.html">Empty</a>
+        </div>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+</nav>
