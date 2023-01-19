@@ -47,6 +47,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+//-momery unleaked---------
+app.set("trust proxy", 1);
+
 const sessionConfig = {
   secret: "yedpmaiaaphomashaallah",
   resave: false,
