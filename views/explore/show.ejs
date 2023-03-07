@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-center align-items center flex-grow-1">
   <div>
     <h1 id="heading"><%= watchbag.name %></h1>
-    <h3 id="heading2"><%= watchbag.author.username %></h3>
+    <h3 id="heading2">Created By : <%= watchbag.author.username %></h3>
     <br />
     <% for (let s of watchbag.showsCurrent){%>
     <a href="/search/<%= s.imdbID %>">
