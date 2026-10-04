@@ -1,15 +1,18 @@
 {
-  "version": 2,
-  "builds": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm --filter @watchbag/shared build && pnpm --filter @watchbag/web build",
+  "outputDirectory": "apps/web/dist",
+  "rewrites": [
     {
-      "src": "./index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
+      "source": "/api/auth/:path*",
+      "destination": "https://watchbag-api.fly.dev/api/auth/:path*"
+    },
     {
-      "src": "/(.*)",
-      "dest": "/"
-    }
+      "source": "/trpc/:path*",
+      "destination": "https://watchbag-api.fly.dev/trpc/:path*"
+    },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
